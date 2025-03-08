@@ -6,6 +6,11 @@ import streamlit as st
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
+try:
+    stopwords.words('english')
+except LookupError:
+    nltk.download('stopwords')
+
 # Load models and vectorizers
 vectorizer_fake_news = pickle.load(open('tfdif_vectorizer_fake_news.pkl', 'rb'))
 fake_news_model = pickle.load(open('fake_news_model.sav', 'rb'))
